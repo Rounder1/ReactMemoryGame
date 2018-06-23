@@ -5,72 +5,70 @@ class Container extends React.Component {
         images: [
             {
                 path: require('../pictures/aml-1.PNG'),
-                selected: true,
-                inPlay: false
+                selected: false,
+                id: 1
             },
             {
                 path: require('../pictures/aml-2.PNG'),
-                selected: true,
-                inPlay: false
+                selected: false,
+                id: 2
             },
             {
                 path: require('../pictures/aml-3.PNG'),
                 selected: false,
-                inPlay: false
+                id: 3
             },
             {
                 path: require('../pictures/aml-4.PNG'),
                 selected: false,
-                inPlay: false
+                id: 4
             },
             {
                 path: require('../pictures/aml-5.PNG'),
                 selected: false,
-                inPlay: false
+                id: 5
             },
             {
                 path: require('../pictures/aml-6.PNG'),
                 selected: false,
-                inPlay: false
+                id: 6
             },
             {
                 path: require('../pictures/aml-7.PNG'),
                 selected: false,
-                inPlay: false
+                id: 7
             },
             {
                 path: require('../pictures/aml-8.PNG'),
                 selected: false,
-                inPlay: false
+                id: 8
             },
             {
                 path: require('../pictures/aml-9.PNG'),
                 selected: false,
-                inPlay: false
+                id: 9
             },
             {
                 path: require('../pictures/aml-10.PNG'),
                 selected: false,
-                inPlay: false
+                id: 10
             },
             {
                 path: require('../pictures/aml-11.PNG'),
                 selected: false,
-                inPlay: false
+                id: 11
             },
             {
                 path: require('../pictures/aml-12.PNG'),
                 selected: false,
-                inPlay: false
+                id: 12
             }
         ],
 
-        currentScore: 5,
+        currentScore: 0,
 
         highScore: 0
     }
-
-
 
     randomizer = () => {
         const imagesOrder = this.state.images;
@@ -86,25 +84,24 @@ class Container extends React.Component {
         }
     };
 
-    checkSelected = (i) => {
-        const imagesSelect = this.state.images;
+    checkSelected = (index) => {
 
-        if (imagesSelect[i].selected === false) {
-            alert("its false");
-            this.setState({ currentScore: this.state.currentScore + 1 });
-            {
-            // this.setState({ imagesSelect[0].selected: true });
-            }
+        if (this.state.images[index].selected === false) {
+            this.setState({ 
+                currentScore: this.state.currentScore + 1, 
+                images: this.state.images.map((element, i)=>  {
+                    if (i === index) element.selected = true })
+            });
+            
         }
-        else if (imagesSelect[i].selected === true) {
-            this.checkHighScore();
-            alert("you lose");
-        }
+        // else if (imagesSelect[i].selected === true) {
+        //     this.checkHighScore();
+        //     alert("you lose");
+        // }
         
         {/*if arr.Index.selected is true then compair their current score to their high score, replace if higher, then start a new game*/}
     };
 
-    shuffled = this.randomizer(this.state.images);
 
     render() {
         return (
